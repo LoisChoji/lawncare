@@ -55,7 +55,7 @@ ROOT_URLCONF = 'lawncare.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'lawn/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,8 +76,13 @@ WSGI_APPLICATION = 'lawncare.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #we installed the pycopg2 that connects postgres with python
+        # we are using postgresql for our database
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME'  : 'lawncare',
+        'USER'  : 'postgres',
+        'PASSWORD':'Lois15791',
+        'HOST'  : 'localhost',
     }
 }
 
@@ -106,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Lagos'
 
 USE_I18N = True
 
@@ -125,6 +130,8 @@ STATICFILES_DIRS = [
 ]   
 # STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#created a new module accounts
+#so i can equally use it for other projects
